@@ -9,14 +9,14 @@ library(ggtree)
 library(scales)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # Devil ancestry tree #
 #######################
 
 ## input highest scoring RAxML-NG tree
-Ancestry.tree <- read.tree('Supplementary_data/RAxML_Ancestry_tree.bestTree') ### provide on Github and/or Apollo
+Ancestry.tree <- read.tree('RAxML_Ancestry_tree.bestTree')
 Ancestry.tree <- treeio::root(Ancestry.tree, node = 231)
 class(Ancestry.tree$edge) <- 'integer'
 
