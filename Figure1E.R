@@ -9,7 +9,7 @@ library(ggtree)
 library(ggsn)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # Dated DFT2 tree #
@@ -21,8 +21,8 @@ DFT2.truncal.median <- DFT2.truncal - 818 ### median expected number of somatic 
 
 ## import and process BEAST MCMC draws on DFT1 mutation rate and date of origin (generated with Tracer)
 masked.mSarHar11.1 <- c('A' = 951740967, 'C' = 540077344, 'G' = 539833602, 'T' = 952098282)
-DFT2.beast.trees.MRCAs.rates <- cbind(read.table('Supplementary_data/BEAST_DFT2_MRCAs.txt', header = T),
-                                      'rates' = read.table('Supplementary_data/BEAST_DFT2_rates.txt', header = T)[,2])
+DFT2.beast.trees.MRCAs.rates <- cbind(read.table('BEAST_DFT2_MRCAs.txt', header = T),
+                                      'rates' = read.table('BEAST_DFT2_rates.txt', header = T)[,2])
 DFT2.beast.trees.MRCAs.rates[,'rates'] <- DFT2.beast.trees.MRCAs.rates[,'rates']*
   sum(masked.mSarHar11.1) ### convert to genome-wide mutations per year
 DFT2.beast.trees.MRCAs.rates <- cbind(DFT2.beast.trees.MRCAs.rates,
@@ -34,7 +34,7 @@ DFT2.beast.trees.MRCAs.rates[,'age at 818 singletons'] <- DFT2.beast.trees.MRCAs
   c(DFT2.truncal.median/DFT2.beast.trees.MRCAs.rates[,'rates'])
 
 ## import and process DFT2 maximum clade consensus tree
-DFT2.beast.tree.hpd <- read.beast('Supplementary_data/BEAST_DFT2.mcc')
+DFT2.beast.tree.hpd <- read.beast('BEAST_DFT2.mcc')
 DFT2.beast.tree.hpd@data[which.max(unlist(DFT2.beast.tree.hpd@data[,'height'])),"height_0.95_HPD"][[1]][[1]][2] <- 2018.66575342466 - 
   as.numeric(quantile(DFT2.beast.trees.MRCAs.rates[,'age at 0 singletons'], probs = c(0.05)))
 
