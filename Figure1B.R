@@ -11,14 +11,14 @@ library(ggmap)
 library(rstudioapi)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 sampling map #
 #####################
 
 ## fetch location of all deep-sequenced DFT1 tumours
-samples <- as.matrix(read_xlsx('Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,5,6,7)]
@@ -112,7 +112,7 @@ rm(list=ls())
 #####################
 
 ## fetch location of all deep-sequenced DFT2 tumours
-samples <- as.matrix(read_xlsx('Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft2.samples <- samples[samples[,9] == 'DFT2',]
 dft2.samples <- dft2.samples[which(is.na(dft2.samples[,9]) == F),]
 dft2.samples <- dft2.samples[,c(8,5,6,7)]
