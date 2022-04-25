@@ -6,14 +6,14 @@
 library(scales)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1-C subclonal VAF histograms #
 ###################################
 
 ## load corrected VAFs
-load("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/DFT2_subclones_corrected_VAF.Rdata")
+load("DFT2_subclones_corrected_VAF.Rdata")
 VAF.139T4 <- DFT1.corrected.SNVs[,'139T4']
 VAF.139T1 <- DFT1.corrected.SNVs[,'139T1']
 VAF.140T <- DFT1.corrected.SNVs[,'140T']
