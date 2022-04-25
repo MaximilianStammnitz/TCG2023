@@ -9,14 +9,14 @@ library(ggtree)
 library(scales)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT2-B subclonal tree #
 #########################
 
 ## Import and plot DFT2-B RAxML tree
-DFT2.raxml.tree <- read.tree("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/RAxML_DFT2_subclones.raxml.support")
+DFT2.raxml.tree <- read.tree("RAxML_DFT2_subclones.raxml.support")
 outgroup_node <- which(DFT2.raxml.tree$tip.label == "1545T2")
 outgroup_edge <- which(DFT2.raxml.tree$edge[,2]==outgroup_node)
 outgroup_edge_length <- DFT2.raxml.tree$edge.length[outgroup_edge]
