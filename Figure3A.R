@@ -8,16 +8,16 @@ library(scales)
 library(Biostrings)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 and DFT2 substitution spectra #
 ######################################
 
 ## import data
-load("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/DFT1_DFT2_340T_somatic_variants.Rdata")
-reference <- readDNAStringSet('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/sarcophilus_harrisii_toplevel.fa.gz')
-reference_trinucleotides <- read.table('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/mSarhar1.11_trinucleotides.txt', header = T)
+load("DFT1_DFT2_340T_somatic_variants.Rdata")
+reference <- readDNAStringSet('sarcophilus_harrisii_toplevel.fa.gz')
+reference_trinucleotides <- read.table('Sarhar1.11_trinucleotides.txt', header = T)
 
 ## functions for substitution processing (GITHUB repository: https://github.com/MaximilianStammnitz/SubstitutionSafari)
 substitution.spectrum <- function(x, normalised){
@@ -233,7 +233,7 @@ plot.substition.spectrum <- function(x, title, peak.colour){
   
 }
 
-### DFT1 - minus 377T1-uniques (176427 SNVs)
+### DFT1 - minus 377T1-uniques
 DFT1.SNVs.minus377T <- DFT1.SNVs[-which(rowSums(DFT1.SNVs.bin) == 1 & DFT1.SNVs.bin[,'377T1'] == 1),]
 DFT1.SNVs.minus377T.spectrum <- substitution.spectrum(DFT1.SNVs.minus377T, normalised = T)
 pdf("Figure3A_DFT1_substitution_spectrum.pdf", 
