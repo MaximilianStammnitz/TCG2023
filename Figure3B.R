@@ -1582,3 +1582,6 @@ plot.indel.spectrum(DFT2.Indels.spectrum,
                     title = '', 
                     colors.bars = 'red')
 dev.off()
+
+## clean up environment
+rm(list=ls())
