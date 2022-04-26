@@ -99,3 +99,6 @@ polygon(out.sc2.1334T1, col = alpha(SC2.col, transp), border = "black")
 
 mtext('Variant allele fraction (%)', side = 1, line = 13.7, cex = 6)
 dev.off()
+
+## clean up environment
+rm(list=ls())
