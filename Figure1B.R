@@ -52,7 +52,7 @@ class(summary) <- 'numeric'
 summary <- as.data.frame(summary)
 
 ## downlaod Tasmania map via ggmap package, requires a Google API key:
-### video link ###
+## (example video: https://www.youtube.com/watch?v=ewYGC2JjKuE)
 ## register_google(key = '') fill in
 tasmania.map.googlemaps_terrain <- get_googlemap(center = c(146.8087, -42.0409), 
                                                  zoom = 7,
