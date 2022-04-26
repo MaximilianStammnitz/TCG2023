@@ -391,3 +391,6 @@ ggplot(DFT1.SNVs.counts.SBS5, aes(x = `Collection Date`, y = `SNVs`)) +
         text = element_text(family="Helvetica"),
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
+
+## clean up environment
+rm(list=ls())
