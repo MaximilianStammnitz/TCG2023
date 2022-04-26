@@ -9,14 +9,14 @@ library(lubridate)
 library(ggplot2)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 and DFT2 substitution rates #
 ####################################
 
 ## import data
-counts <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S3_v6.xlsx', sheet = 3))
+counts <- as.matrix(read_xlsx('Table-S3.xlsx', sheet = 3))
 colnames(counts) <- as.character(counts[2,])
 counts <- counts[-c(1:2),]
 dft1.counts <- counts[counts[,'LINEAGE'] == 'DFT1',]
@@ -24,7 +24,7 @@ dft1.counts <- dft1.counts[which(dft1.counts[,'TUMOUR ID'] != '377T1'),]
 dft2.counts <- counts[counts[,'LINEAGE'] == 'DFT2',]
 
 ## metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 
 ### DFT1
 dft1.samples <- samples[samples[,9] == 'DFT1',]
