@@ -251,3 +251,6 @@ plot.substition.spectrum(DFT2.SNVs.spectrum$counts.normalised,
                          title = '', 
                          peak.colour = 'red')
 dev.off()
+
+## clean up environment
+rm(list=ls())
