@@ -14,14 +14,14 @@ library(rstudioapi)
 library(lubridate)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 tree #
 #############
 
 ## clade C2/3 separation
-clades <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+clades <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 colnames(clades) <- clades[2,]
 clades.dft1 <- clades[grep('DFT1', clades[,9]),]
 samples.cladeC <-  clades.dft1[grep('DFT1-C', clades.dft1[,10]),]
@@ -34,8 +34,8 @@ DFT1.truncal.median <- DFT1.truncal - 818 ### median expected number of somatic 
 
 ## import and process BEAST MCMC draws on DFT1 mutation rate and date of origin (generated with Tracer)
 masked.mSarHar11.1 <- c('A' = 951740967, 'C' = 540077344, 'G' = 539833602, 'T' = 952098282)
-DFT1.beast.trees.MRCAs.rates <- cbind(read.table('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/BEAST_DFT1_MRCAs.txt', header = T),
-                                      'rates' = read.table('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/BEAST_DFT1_rates.txt', header = T)[,2])
+DFT1.beast.trees.MRCAs.rates <- cbind(read.table('BEAST_DFT1_MRCAs.txt', header = T),
+                                      'rates' = read.table('BEAST_DFT1_rates.txt', header = T)[,2])
 DFT1.beast.trees.MRCAs.rates[,'rates'] <- DFT1.beast.trees.MRCAs.rates[,'rates']*
   sum(masked.mSarHar11.1) ### convert to genome-wide mutations per year
 DFT1.beast.trees.MRCAs.rates <- cbind(DFT1.beast.trees.MRCAs.rates,
@@ -47,7 +47,7 @@ DFT1.beast.trees.MRCAs.rates[,'age at 818 singletons'] <- DFT1.beast.trees.MRCAs
   c(DFT1.truncal.median/DFT1.beast.trees.MRCAs.rates[,'rates'])
 
 ## import and process DFT1 maximum clade consensus tree
-DFT1.beast.tree.hpd <- read.beast('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/BEAST_DFT1.mcc')
+DFT1.beast.tree.hpd <- read.beast('BEAST_DFT1.mcc')
 DFT1.beast.tree.hpd@data[which.max(unlist(DFT1.beast.tree.hpd@data[,'height'])),'height_0.95_HPD'][[1]][[1]][2] <- 2018.13424657534 - 
   as.numeric(quantile(DFT1.beast.trees.MRCAs.rates[,'age at 0 singletons'], probs = c(0.05)))
 
@@ -99,12 +99,14 @@ p <- ggtree(DFT1.beast.tree.hpd,
 flip(p, clade_c, clade_c) %>% rotate(MRCA(DFT1.beast.tree.hpd, c("140T", "88T"))) %>% flip(clade_b, clade_d)
 dev.off()
 
+rm(list=ls())
+
 
 # DFT1-C2/3 sampling map #
 ##########################
 
 ## clade C2/3 separation
-clades <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+clades <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 colnames(clades) <- clades[2,]
 clades.dft1 <- clades[grep('DFT1', clades[,9]),]
 samples.cladeC <-  clades.dft1[grep('DFT1-C', clades.dft1[,10]),]
@@ -128,7 +130,7 @@ class(summary.sf) <- 'numeric'
 summary.sf <- as.data.frame(summary.sf)
 
 ## downlaod Tasmania map via ggmap package, requires a Google API key:
-### video link ###
+## (example video: https://www.youtube.com/watch?v=ewYGC2JjKuE)
 ## register_google(key = '') fill in
 tasmania.map.googlemaps_terrain <- get_googlemap(center = c(146.8087, -42.0409), 
                                                  zoom = 7,
@@ -167,19 +169,21 @@ ggmap(tasmania.map.googlemaps_terrain,
         axis.title.y=element_blank())
 dev.off()
 
+rm(list=ls())
+
 
 # DFT1-C2/3 substitution rates #
 ################################
 
 ## import data
-counts <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S3_v6.xlsx', sheet = 3))
+counts <- as.matrix(read_xlsx('Table-S3.xlsx', sheet = 3))
 colnames(counts) <- as.character(counts[2,])
 counts <- counts[-c(1:2),]
 dft1.counts <- counts[counts[,'LINEAGE'] == 'DFT1',]
 dft1.counts <- dft1.counts[which(dft1.counts[,'TUMOUR ID'] != '377T1'),]
 
 ## metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,4,13)]
@@ -203,7 +207,7 @@ DFT1.SNVs.counts[,'Purity'] <- as.numeric(as.character(DFT1.SNVs.counts[,'Purity
 DFT1.SNVs.counts[,'SNVs'] <- as.numeric(as.character(DFT1.SNVs.counts[,'SNVs']))
 
 ## clade C2/3 separation
-clades <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+clades <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 colnames(clades) <- clades[2,]
 clades.dft1 <- clades[grep('DFT1', clades[,9]),]
 samples.cladeC <-  clades.dft1[grep('DFT1-C', clades.dft1[,10]),]
@@ -238,19 +242,21 @@ ggplot(DFT1.SNVs.counts, aes(x = `Collection Date`, y = `SNVs`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+rm(list=ls())
+
 
 # DFT1-C2/3 SBS1 rates #
 ########################
 
 ## import data
-counts <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S3_v6.xlsx', sheet = 3))
+counts <- as.matrix(read_xlsx('Table-S3_v6.xlsx', sheet = 3))
 colnames(counts) <- as.character(counts[2,])
 counts <- counts[-c(1:2),]
 dft1.counts <- counts[counts[,'LINEAGE'] == 'DFT1',]
 dft1.counts <- dft1.counts[which(dft1.counts[,'TUMOUR ID'] != '377T1'),]
 
 ## metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,4,13)]
@@ -274,7 +280,7 @@ DFT1.SNVs.counts.SBS1[,'Purity'] <- as.numeric(as.character(DFT1.SNVs.counts.SBS
 DFT1.SNVs.counts.SBS1[,'SNVs'] <- as.numeric(as.character(DFT1.SNVs.counts.SBS1[,'SNVs']))
 
 ## clade C2/3 separation
-clades <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+clades <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 colnames(clades) <- clades[2,]
 clades.dft1 <- clades[grep('DFT1', clades[,9]),]
 samples.cladeC <-  clades.dft1[grep('DFT1-C', clades.dft1[,10]),]
@@ -309,19 +315,21 @@ ggplot(DFT1.SNVs.counts.SBS1, aes(x = `Collection Date`, y = `SNVs`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+rm(list=ls())
+
 
 # DFT1-C2/3 SBS5 rates #
 ########################
 
 ## import data
-counts <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S3_v6.xlsx', sheet = 3))
+counts <- as.matrix(read_xlsx('Table-S3.xlsx', sheet = 3))
 colnames(counts) <- as.character(counts[2,])
 counts <- counts[-c(1:2),]
 dft1.counts <- counts[counts[,'LINEAGE'] == 'DFT1',]
 dft1.counts <- dft1.counts[which(dft1.counts[,'TUMOUR ID'] != '377T1'),]
 
 ## metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,4,13)]
@@ -345,7 +353,7 @@ DFT1.SNVs.counts.SBS5[,'Purity'] <- as.numeric(as.character(DFT1.SNVs.counts.SBS
 DFT1.SNVs.counts.SBS5[,'SNVs'] <- as.numeric(as.character(DFT1.SNVs.counts.SBS5[,'SNVs']))
 
 ## clade C2/3 separation
-clades <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+clades <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 colnames(clades) <- clades[2,]
 clades.dft1 <- clades[grep('DFT1', clades[,9]),]
 samples.cladeC <-  clades.dft1[grep('DFT1-C', clades.dft1[,10]),]
