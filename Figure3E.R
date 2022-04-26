@@ -81,6 +81,7 @@ ggplot(DFT1.DFT2.SBS1.counts, aes(x = `Collection Date`, y = `SBS1`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+## clean up environment
 rm(list=ls())
 
 
