@@ -16,7 +16,7 @@ library(Biostrings)
 library(GenomicRanges)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 tree #
@@ -28,8 +28,8 @@ DFT1.truncal.median <- DFT1.truncal - 818 ### median expected number of somatic 
 
 ## import and process BEAST MCMC draws on DFT1 mutation rate and date of origin (generated with Tracer)
 masked.mSarHar11.1 <- c('A' = 951740967, 'C' = 540077344, 'G' = 539833602, 'T' = 952098282)
-DFT1.beast.trees.MRCAs.rates <- cbind(read.table('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/BEAST_DFT1_MRCAs.txt', header = T),
-                                      'rates' = read.table('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/BEAST_DFT1_rates.txt', header = T)[,2])
+DFT1.beast.trees.MRCAs.rates <- cbind(read.table('BEAST_DFT1_MRCAs.txt', header = T),
+                                      'rates' = read.table('BEAST_DFT1_rates.txt', header = T)[,2])
 DFT1.beast.trees.MRCAs.rates[,'rates'] <- DFT1.beast.trees.MRCAs.rates[,'rates']*
   sum(masked.mSarHar11.1) ### convert to genome-wide mutations per year
 DFT1.beast.trees.MRCAs.rates <- cbind(DFT1.beast.trees.MRCAs.rates,
@@ -41,7 +41,7 @@ DFT1.beast.trees.MRCAs.rates[,'age at 818 singletons'] <- DFT1.beast.trees.MRCAs
   c(DFT1.truncal.median/DFT1.beast.trees.MRCAs.rates[,'rates'])
 
 ## import and process DFT1 maximum clade consensus tree
-DFT1.beast.tree.hpd <- read.beast('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/BEAST_DFT1.mcc')
+DFT1.beast.tree.hpd <- read.beast('BEAST_DFT1.mcc')
 DFT1.beast.tree.hpd@data[which.max(unlist(DFT1.beast.tree.hpd@data[,'height'])),'height_0.95_HPD'][[1]][[1]][2] <- 2018.13424657534 - 
   as.numeric(quantile(DFT1.beast.trees.MRCAs.rates[,'age at 0 singletons'], probs = c(0.05)))
 
@@ -98,12 +98,15 @@ p <- ggtree(DFT1.beast.tree.hpd,
 flip(p, clade_c, clade_c) %>% rotate(MRCA(DFT1.beast.tree.hpd, c("140T", "88T"))) %>% flip(clade_b, clade_d)
 dev.off()
 
+## clean up environment
+rm(list=ls())
+
 
 # DFT1-E sampling map #
 #######################
 
 ## clade E separation
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,5,6,7)]
@@ -116,7 +119,7 @@ class(summary.sf) <- 'numeric'
 summary.sf <- as.data.frame(summary.sf)
 
 ## downlaod Tasmania map via ggmap package, requires a Google API key:
-### video link ###
+## (example video: https://www.youtube.com/watch?v=ewYGC2JjKuE)
 ## register_google(key = '') fill in
 tasmania.map.googlemaps_terrain <- get_googlemap(center = c(146.8087, -42.0409), 
                                                  zoom = 7,
@@ -154,18 +157,21 @@ ggmap(tasmania.map.googlemaps_terrain,
         axis.title.y=element_blank())
 dev.off()
 
+## clean up environment
+rm(list=ls())
+
 
 # DFT1-E substitution rates #
 #############################
 
 ## import data
-counts <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S3_v6.xlsx', sheet = 3))
+counts <- as.matrix(read_xlsx('Table-S3.xlsx', sheet = 3))
 colnames(counts) <- as.character(counts[2,])
 counts <- counts[-c(1:2),]
 dft1.counts <- counts[counts[,'LINEAGE'] == 'DFT1',]
 
 ## metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,4,13)]
@@ -211,18 +217,21 @@ ggplot(DFT1.SNVs.counts, aes(x = `Collection Date`, y = `SNVs`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+## clean up environment
+rm(list=ls())
+
 
 # DFT1-E indel rates #
 ######################
 
 ## import data
-counts <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S3_v6.xlsx', sheet = 4))
+counts <- as.matrix(read_xlsx('Table-S3.xlsx', sheet = 4))
 colnames(counts) <- as.character(counts[2,])
 counts <- counts[-c(1:2),]
 dft1.counts <- counts[counts[,'LINEAGE'] == 'DFT1',]
 
 ## metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 dft1.samples <- samples[samples[,9] == 'DFT1',]
 dft1.samples <- dft1.samples[which(is.na(dft1.samples[,9]) == F),]
 dft1.samples <- dft1.samples[,c(8,4,13)]
@@ -268,14 +277,17 @@ ggplot(DFT1.Indels.counts, aes(x = `Collection Date`, y = `Indels`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+## clean up environment
+rm(list=ls())
+
 
 # DFT1-E spectra #
 ##################
 
 ## import data
-load("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/DFT1_DFT2_340T_somatic_variants.Rdata")
-reference <- readDNAStringSet('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/sarcophilus_harrisii_toplevel.fa.gz')
-reference_trinucleotides <- read.table('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/mSarhar1.11_trinucleotides.txt', header = T)
+load("DFT1_DFT2_340T_somatic_variants.Rdata")
+reference <- readDNAStringSet('sarcophilus_harrisii_toplevel.fa.gz')
+reference_trinucleotides <- read.table('mSarhar1.11_trinucleotides.txt', header = T)
 
 ## functions for substitution processing (GITHUB repository: https://github.com/MaximilianStammnitz/SubstitutionSafari)
 substitution.spectrum <- function(x, normalised){
@@ -2057,12 +2069,15 @@ plot.indel.spectrum(DFT1.Indels.377Tunique.spectrum,
                     colors.bars = 'cornflowerblue')
 dev.off()
 
+## clean up environment
+rm(list=ls())
+
 
 # MLH1 deletion - Campbellgram #
 ################################
 
 ### load and subset 377T1 SVs
-DFT1.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 2))
+DFT1.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 2))
 colnames(DFT1.SVs) <- as.character(DFT1.SVs[2,])
 DFT1.SVs <- DFT1.SVs[-c(1:2),]
 DFT1.SVs.377T1.MSG <- DFT1.SVs[grep('MSG', DFT1.SVs[,'CALLER']),,drop=F]
@@ -2115,7 +2130,7 @@ DFT1.SVs.377T1.unique.inter.right <- DFT1.SVs.377T1.unique[OL.left[!OL.left[,1] 
 DFT1.SVs.377T1.unique.inter.left <- DFT1.SVs.377T1.unique[OL.right[!OL.right[,1] %in% OL.left[,1],1],,drop=F]
 
 ## load 377T1 (normalised LogR or CNV calls from Kevin) 
-copynumber.377T1 <- read.table("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/Copynumber_377T1_chr1.txt", header = T)
+copynumber.377T1 <- read.table("Copynumber_377T1_chr1.txt", header = T)
 copynumber.377T1 <- copynumber.377T1[which(copynumber.377T1[,"excluded_from_segmentation"] == F),]
 
 ## display CN estimates for SNPs & SNVs
