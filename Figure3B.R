@@ -8,15 +8,15 @@ library(scales)
 library(Biostrings)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 and DFT2 indel spectra #
 ###############################
 
 ## import data
-load("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/DFT1_DFT2_340T_somatic_variants.Rdata")
-reference <- readDNAStringSet('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/sarcophilus_harrisii_toplevel.fa.gz')
+load("DFT1_DFT2_340T_somatic_variants.Rdata")
+reference <- readDNAStringSet('sarcophilus_harrisii_toplevel.fa.gz')
 
 ## functions for indel processing (GITHUB repository: https://github.com/MaximilianStammnitz/Indelwald)
 indel.spectrum <- function(x){
@@ -1564,7 +1564,7 @@ plot.indel.spectrum <- function(x, title, colors.bars){
   title(ylab = "Indels [%]", line = 9, cex.lab = 6)
 }
 
-### DFT1 - minus 377T1-uniques (22479 indels)
+### DFT1 - minus 377T1-uniques
 DFT1.Indels.minus377T <- DFT1.Indels[-which(rowSums(DFT1.Indels.bin) == 1 & DFT1.Indels.bin[,'377T1'] == 1),]
 DFT1.Indels.minus377T.spectrum <- indel.spectrum(DFT1.Indels.minus377T)
 pdf("Figure3B_DFT1_indel_spectrum.pdf", 
@@ -1574,7 +1574,7 @@ plot.indel.spectrum(x = DFT1.Indels.minus377T.spectrum,
                     colors.bars = 'cornflowerblue')
 dev.off()
 
-### DFT2 - all (4054 indels)
+### DFT2 - all
 DFT2.Indels.spectrum <- indel.spectrum(DFT2.Indels)
 pdf("Figure3B_DFT2_indel_spectrum.pdf", 
     height = 12, width = 20)
