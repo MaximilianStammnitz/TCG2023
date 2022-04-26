@@ -9,19 +9,19 @@ library(GenomicRanges)
 library(circlize)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 ancestral events - circos plot #
 #######################################
 
 ## import structural variant table
-DFT1.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 2))
+DFT1.SVs <- as.matrix(read_xlsx('/Table-S5.xlsx', sheet = 2))
 colnames(DFT1.SVs) <- as.character(DFT1.SVs[2,])
 DFT1.SVs <- DFT1.SVs[-c(1:2),]
 
 ## import copy-number variants
-DFT1.CNVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx', sheet = 2))
+DFT1.CNVs <- as.matrix(read_xlsx('Table-S6.xlsx', sheet = 2))
 colnames(DFT1.CNVs) <- as.character(DFT1.CNVs[2,])
 DFT1.CNVs <- DFT1.CNVs[-c(1:2),]
 
@@ -157,12 +157,12 @@ rm(list=ls())
 #######################################
 
 ## import structural variant table
-DFT2.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 3))
+DFT2.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 3))
 colnames(DFT2.SVs) <- as.character(DFT2.SVs[2,])
 DFT2.SVs <- DFT2.SVs[-c(1:2),]
 
 ## import copy-number variants
-DFT2.CNVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx', sheet = 3))
+DFT2.CNVs <- as.matrix(read_xlsx('Table-S6.xlsx', sheet = 3))
 colnames(DFT2.CNVs) <- as.character(DFT2.CNVs[2,])
 DFT2.CNVs <- DFT2.CNVs[-c(1:2),]
 
@@ -299,12 +299,12 @@ rm(list=ls())
 #########################################
 
 ## import structural variant table
-T340.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 4))
+T340.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 4))
 colnames(T340.SVs) <- as.character(T340.SVs[2,])
 T340.SVs <- T340.SVs[-c(1:2),]
 
 ## import copy-number variants
-T340.CNVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx', sheet = 4))
+T340.CNVs <- as.matrix(read_xlsx('Table-S6.xlsx', sheet = 4))
 colnames(T340.CNVs) <- as.character(T340.CNVs[2,])
 T340.CNVs <- T340.CNVs[-c(1:2),]
 
