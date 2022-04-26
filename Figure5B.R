@@ -9,21 +9,21 @@ library(lubridate)
 library(ggplot2)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # Rearrangement event rates #
 #############################
 
 ## import rearrangement events
-DFT.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 1))
+DFT.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 1))
 colnames(DFT.SVs) <- as.character(DFT.SVs[2,])
 DFT.SVs <- DFT.SVs[-c(1:2),]
 DFT1.SVs <- DFT.SVs[DFT.SVs[,'LINEAGE'] == 'DFT1',]
 DFT2.SVs <- DFT.SVs[DFT.SVs[,'LINEAGE'] == 'DFT2',]
 
 ## load metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 
 ### DFT1
 dft1.samples <- samples[samples[,9] == 'DFT1',]
@@ -87,7 +87,7 @@ rm(list=ls())
 #############
 
 ## DFT1
-DFT1.cnvs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx', sheet = 2))
+DFT1.cnvs <- as.matrix(read_xlsx('Table-S6.xlsx', sheet = 2))
 colnames(DFT1.cnvs) <- DFT1.cnvs[2,]
 DFT1.cnvs <- DFT1.cnvs[-c(1:2),]
 DFT1.cnvs <- DFT1.cnvs[-which(DFT1.cnvs[,'MARKER 5'] == 'YES'),] ## M5s
@@ -131,7 +131,7 @@ for (i in 1:nrow(DFT1.cnvs)){
 }
 
 ## DFT2
-DFT2.cnvs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx', sheet = 3))
+DFT2.cnvs <- as.matrix(read_xlsx('Table-S6.xlsx', sheet = 3))
 colnames(DFT2.cnvs) <- DFT2.cnvs[2,]
 DFT2.cnvs <- DFT2.cnvs[-c(1:2),]
 
@@ -175,7 +175,7 @@ total.cnvs.dft1 <- apply(DFT1.cnvs[,-c(1:12)], 2, function(x){sum(abs(as.numeric
 total.cnvs.dft2 <- apply(DFT2.cnvs[,-c(1:10)], 2, function(x){sum(abs(as.numeric(x)))})
 
 ## load metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 
 ### DFT1
 dft1.samples <- samples[samples[,9] == 'DFT1',]
