@@ -1,6 +1,6 @@
 ![Scripting](https://img.shields.io/badge/Language-R-yellow.svg) ![Copyright](https://img.shields.io/badge/Copyright-(c)_2022_Max\_Stammnitz\_@TCG\_Cambridge-green.svg)
 
-## Analysis scripts accompanying publication Stammnitz et al., 2022
+## Analysis scripts accompanying Stammnitz et al., 2022
 
 _Maximilian Stammnitz 
 Transmissible Cancer Group, University of Cambridge  
