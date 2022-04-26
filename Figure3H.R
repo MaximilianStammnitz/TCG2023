@@ -2258,3 +2258,6 @@ mtext(side = 2,
       cex = 6)
 
 dev.off()
+
+## clean up environment
+rm(list=ls())
