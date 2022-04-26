@@ -10,14 +10,14 @@ library(circlize)
 library(scales)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # Chromothripsis in 384T1 - circos plot #
 #########################################
 
 ## load and subset 384T1 SVs
-DFT1.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 2))
+DFT1.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 2))
 colnames(DFT1.SVs) <- as.character(DFT1.SVs[2,])
 DFT1.SVs <- DFT1.SVs[-c(1:2),]
 DFT1.SVs.384T1.MSG <- DFT1.SVs[grep('MSG', DFT1.SVs[,'CALLER']),]
@@ -137,7 +137,7 @@ rm(list=ls())
 ##########################################
 
 ## load and subset 384T1 SVs
-DFT1.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 2))
+DFT1.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 2))
 colnames(DFT1.SVs) <- as.character(DFT1.SVs[2,])
 DFT1.SVs <- DFT1.SVs[-c(1:2),]
 DFT1.SVs.384T1.MSG <- DFT1.SVs[grep('MSG', DFT1.SVs[,'CALLER']),]
@@ -190,7 +190,7 @@ DFT1.SVs.384T1.unique.inter.right <- DFT1.SVs.384T1.unique[OL.left[!OL.left[,1] 
 DFT1.SVs.384T1.unique.inter.left <- DFT1.SVs.384T1.unique[OL.right[!OL.right[,1] %in% OL.left[,1],1],]
 
 ## load 384T1 normalised LogR data
-copynumber.384T1 <- read.csv("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/Copynumber_384T1_chr1.csv")
+copynumber.384T1 <- read.csv("Copynumber_384T1_chr1.csv")
 copynumber.384T1.window <- copynumber.384T1[which(copynumber.384T1[,"excluded_from_segmentation"] == F),]
 
 ## display CN estimates for SNPs & SNVs
