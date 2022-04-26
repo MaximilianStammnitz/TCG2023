@@ -9,14 +9,14 @@ library(GenomicRanges)
 library(circlize)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # Chr1:517 MB LINE-1 source element - circos plot # 
 ###################################################
 
 ## import LINE-1 list
-DFT2.LINE1 <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S4_v6.xlsx', sheet = 3))
+DFT2.LINE1 <- as.matrix(read_xlsx('Table-S4.xlsx', sheet = 3))
 colnames(DFT2.LINE1) <- DFT2.LINE1[2,]
 DFT2.LINE1 <- DFT2.LINE1[-c(1:2),]
 
