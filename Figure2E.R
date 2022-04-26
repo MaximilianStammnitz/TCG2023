@@ -105,3 +105,6 @@ axis(1, at = c(0, 0.2, 0.4, 0.6, 0.8, 1), labels = c(0, 20, 40, 60, 80, 100), pa
 
 mtext('Variant allele fraction (%)', side = 1, line = 13.7, cex = 6)
 dev.off()
+
+## clean up environment
+rm(list=ls())
