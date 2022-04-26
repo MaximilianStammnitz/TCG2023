@@ -99,6 +99,7 @@ p <- ggtree(DFT1.beast.tree.hpd,
 flip(p, clade_c, clade_c) %>% rotate(MRCA(DFT1.beast.tree.hpd, c("140T", "88T"))) %>% flip(clade_b, clade_d)
 dev.off()
 
+## clean up environment
 rm(list=ls())
 
 
@@ -169,6 +170,7 @@ ggmap(tasmania.map.googlemaps_terrain,
         axis.title.y=element_blank())
 dev.off()
 
+## clean up environment
 rm(list=ls())
 
 
@@ -242,6 +244,7 @@ ggplot(DFT1.SNVs.counts, aes(x = `Collection Date`, y = `SNVs`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+## clean up environment
 rm(list=ls())
 
 
@@ -315,6 +318,7 @@ ggplot(DFT1.SNVs.counts.SBS1, aes(x = `Collection Date`, y = `SNVs`)) +
         plot.margin = unit(c(2, 2, 2, 2),"cm"))
 dev.off()
 
+## clean up environment
 rm(list=ls())
 
 
