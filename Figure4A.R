@@ -9,14 +9,14 @@ library(lubridate)
 library(stringr)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # LINE-1 rates #
 ################
 
 ## import LINE-1 lists
-DFT.LINE1.rates <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S4_v6.xlsx', sheet = 1))
+DFT.LINE1.rates <- as.matrix(read_xlsx('Table-S4.xlsx', sheet = 1))
 colnames(DFT.LINE1.rates) <- DFT.LINE1.rates[2,]
 DFT.LINE1.rates <- DFT.LINE1.rates[-c(1:2),]
 DFT1.LINE1.counts <- DFT.LINE1.rates[DFT.LINE1.rates[,1] == 'DFT1',]
@@ -25,7 +25,7 @@ DFT2.LINE1.counts <- DFT.LINE1.rates[DFT.LINE1.rates[,1] == 'DFT2',]
 DFT2.LINE1.counts[34,] <- gsub('\\*', '', DFT2.LINE1.counts[34,])
 
 ## load metadata
-samples <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S2_v6.xlsx', sheet = 1))
+samples <- as.matrix(read_xlsx('Table-S2.xlsx', sheet = 1))
 
 ### DFT1
 dft1.samples <- samples[samples[,9] == 'DFT1',]
