@@ -4,6 +4,6 @@
 
 _Maximilian Stammnitz 
 Transmissible Cancer Group, University of Cambridge (2015–2022)
-maxrupsta@gmail.com
+maxrupsta@gmail.com_
 
 This repository contains custom R scripts which can be used to replicate the figures presented in "The evolution of two transmissible cancers in Tasmanian devils" (Stammnitz _et al._, 2022).
