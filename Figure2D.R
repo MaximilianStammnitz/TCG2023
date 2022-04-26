@@ -50,3 +50,6 @@ p <- ggtree(DFT1.raxml.tree,
   geom_rootedge(rootedge = 0.01, lwd = 1)
 rotate(p, 14) %>% rotate(15) %>% rotate(16)
 dev.off()
+
+## clean up environment
+rm(list=ls())
