@@ -3,9 +3,7 @@
 ## Analysis scripts accompanying Stammnitz et al., 2022
 
 _Maximilian Stammnitz 
-Transmissible Cancer Group, University of Cambridge  
-2015–2022_
-
+Transmissible Cancer Group, University of Cambridge (2015–2022)
 maxrupsta@gmail.com
 
 This repository contains custom R scripts which can be used to replicate the figures presented in "The evolution of two transmissible cancers in Tasmanian devils" (Stammnitz _et al._, 2022).
