@@ -48,3 +48,6 @@ p <- ggtree(DFT2.raxml.tree,
   geom_rootedge(rootedge = 0.01, lwd = 1)
 flip(p, 1, 2) %>% flip(16, 17)
 dev.off()
+
+## clean up environment
+rm(list=ls())
