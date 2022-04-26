@@ -147,7 +147,7 @@ class(dft2.samples) <- 'numeric'
 dft2.samples <- as.data.frame(dft2.samples)
 
 ## downlaod Channel map via ggmap package, requires a Google API key:
-### video link ###
+## (example video: https://www.youtube.com/watch?v=ewYGC2JjKuE)
 ## register_google(key = '') fill in
 channel.map.googlemaps_terrain <- get_googlemap(center = c(147.172596, -43.155303), 
                                                 zoom = 11,
