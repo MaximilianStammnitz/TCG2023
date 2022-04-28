@@ -6,7 +6,7 @@ _Maximilian Stammnitz, Transmissible Cancer Group, University of Cambridge (2015
 
 This repository contains custom R scripts which - in conjunction with the associated supplementary files - can be used to replicate the figures presented in "The evolution of two transmissible cancers in Tasmanian devils" (Stammnitz _et al._, 2022).
 
-The scripts are written to run on **[R](https://www.r-project.org/)** version 3.6.3 or later. You should be able to check your current version of R by running the command below (depending on your installation):
+The scripts are written to run on **[R](https://www.r-project.org/)** version 3.6.3 or later. You should be able to check your current version of R by running the command below:
 
 ```
 R --version
