@@ -6,13 +6,13 @@
 library(readxl)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1 and DFT2 dNdS summary #
 ##############################
 
-dNdS.summary <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S8_v6.xlsx', sheet = 1))
+dNdS.summary <- as.matrix(read_xlsx('Table-S8.xlsx', sheet = 1))
 colnames(dNdS.summary) <- dNdS.summary[2,]
 dNdS.summary <- dNdS.summary[-c(1:2),]
 dNdS.summary[,"Genic variants considered"] <- as.numeric(dNdS.summary[,"Genic variants considered"])
