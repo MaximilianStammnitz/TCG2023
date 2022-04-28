@@ -6,20 +6,20 @@
 library(readxl)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # LZTR1 structural variant display #
 ####################################
 
 ## load LZTR1 annotation
-load("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/Sarcophilus_harrisii.mSarHar1.11.102.gtf.Rdata")
+load("Sarcophilus_harrisii.mSarHar1.11.102.gtf.Rdata")
 LZTR1.ensembl.out <- ensembl[grep('LZTR1', ensembl[,9]),]
 LZTR1.ensembl.out.exons <- LZTR1.ensembl.out[which(LZTR1.ensembl.out[,3] == 'exon'),]
 LZTR1.ensembl.out.exons <- LZTR1.ensembl.out.exons[grep('LZTR1-201', LZTR1.ensembl.out.exons[,9]),]
 
 ## load LZTR1 structural variants
-DFT1.SVs <- as.matrix(read_xlsx('/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S5_v6.xlsx', sheet = 2))
+DFT1.SVs <- as.matrix(read_xlsx('Table-S5.xlsx', sheet = 2))
 colnames(DFT1.SVs) <- as.character(DFT1.SVs[2,])
 DFT1.SVs <- DFT1.SVs[-c(1:2),]
 DFT1.SVs.LZTR1 <- DFT1.SVs[grep('LZTR1', DFT1.SVs[,'ENSEMBL ANNOTATION2']),]
