@@ -4,14 +4,14 @@
 ## maxrupsta@gmail
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # MGA truncation variant display #
 ##################################
 
 ## load MGA annotation
-load("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Supplementary_data/Sarcophilus_harrisii.mSarHar1.11.102.gtf.Rdata")
+load("Sarcophilus_harrisii.mSarHar1.11.102.gtf.Rdata")
 MGA.ensembl.out <- ensembl[grep('MGA', ensembl[,9]),]
 MGA.ensembl.out <- MGA.ensembl.out[which(MGA.ensembl.out[,1] == '2' & MGA.ensembl.out[,4] < 263000000),]
 MGA.ensembl.out.exons <- MGA.ensembl.out[which(MGA.ensembl.out[,3] == 'exon'),]
