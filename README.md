@@ -12,7 +12,7 @@ The scripts are written to run on **[R](https://www.r-project.org/)** version 3.
 R --version
 ```
 
-The current R version is also shown when opening RStudio or the R Console. Similarly, you should be able to check your current version of Python by running the command `python --version`.
+The current R version is also shown when opening RStudio or the R Console.
 
 Scripts require the following R packages: [**`readxl`**](https://cran.r-project.org/web/packages/readxl/index.html), [**`stringr`**](https://cran.r-project.org/web/packages/stringr/index.html), [**`scales`**](https://cran.r-project.org/web/packages/scales/index.html), [**`lubridate`**](https://cran.r-project.org/web/packages/lubridate/index.html), [**`Biostrings`**](https://bioconductor.org/packages/release/bioc/html/Biostrings.html), [**`GenomicRanges`**](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html), [**`ggplot2`**](https://cran.r-project.org/web/packages/ggplot2/index.html), [**`ggmap`**](https://cran.r-project.org/web/packages/ggmap/index.html), [**`rstudioapi`**](https://cran.r-project.org/web/packages/rstudioapi/index.html), [**`ggsn`**](https://cran.r-project.org/web/packages/ggsn/index.html), [**`circlize`**](https://cran.r-project.org/web/packages/circlize/index.html), [**`caper`**](https://cran.r-project.org/web/packages/caper/index.html), [**`phytools`**](https://cran.r-project.org/web/packages/phytools/index.html), [**`treeio`**](https://bioconductor.org/packages/release/bioc/html/treeio.html), [**`ggtree`**](https://bioconductor.org/packages/release/bioc/html/ggtree.html)
 
