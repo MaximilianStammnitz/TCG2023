@@ -9,7 +9,7 @@ library(plotrix)
 library(bit64)
 
 ## set input path(s)
-setwd('/Users/ms37/Desktop/Labwork/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/')
+setwd('/Tables')
 
 
 # DFT1/DFT2 copy number event display #
@@ -39,10 +39,10 @@ centromere <- data.table(CHROM=c(1,2,3,4,5,6,"X"),
 
 ## cnvtable:
 # The Copy number events inferred for DFT1 and DFT2
-cnvtable.DFT1 <- as.matrix(read_xlsx("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx", sheet = 2))
+cnvtable.DFT1 <- as.matrix(read_xlsx("Table-S6.xlsx", sheet = 2))
 colnames(cnvtable.DFT1) <- as.character(cnvtable.DFT1[2,])
 cnvtable.DFT1 <- cnvtable.DFT1[-c(1:2),]
-cnvtable.DFT2 <- as.matrix(read_xlsx("/Users/mstammnitz/Desktop/DFT_evolution/doc/manuscripts/The Evolutionary History of Two Transmissible Cancers in Tasmanian Devils/Tables/v6/Table-S6_v6.xlsx", sheet = 3))
+cnvtable.DFT2 <- as.matrix(read_xlsx("Table-S6.xlsx", sheet = 3))
 colnames(cnvtable.DFT2) <- as.character(cnvtable.DFT2[2,])
 cnvtable.DFT2 <- cnvtable.DFT2[-c(1:2),]
 cnvtable <- as.data.table(rbind(cbind("CHROM" = cnvtable.DFT1[,2], 
