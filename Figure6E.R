@@ -5,8 +5,6 @@
 
 library(readxl)
 library(data.table)
-library(plotrix)
-library(bit64)
 library(rectanglePacking)
 
 ## set input path(s)
