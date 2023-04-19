@@ -1,10 +1,10 @@
 ![Scripting](https://img.shields.io/badge/Language-R-yellow.svg) ![Copyright](https://img.shields.io/badge/Copyright-(c)_2022_Max\_Stammnitz\_@TCG\_Cambridge-green.svg)
 
-## Analysis scripts accompanying Stammnitz et al., 2022
+## Analysis scripts accompanying Stammnitz et al., 2023
 
 _Maximilian Stammnitz, Transmissible Cancer Group, University of Cambridge (2015–2022)_
 
-This repository contains custom R scripts which - in conjunction with the associated supplementary files - can be used to replicate the main figures presented in: **The evolution of two transmissible cancers in Tasmanian devils ([Stammnitz _et al._ 2022, bioRxiv](https://www.biorxiv.org/content/10.1101/2022.05.27.493404v1))**.
+This repository contains custom R scripts which - in conjunction with the associated supplementary files - can be used to replicate the main figures presented in: **The evolution of two transmissible cancers in Tasmanian devils ([Stammnitz _et al._ 2023, Science 380:6642](https://doi.org/10.1126/science.abq6453))**.
 
 The scripts are written to run on **[R](https://www.r-project.org/)** version 3.6.3 or later. You should be able to check your current version of R by running the command below:
 
